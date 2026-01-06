@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizMaster - Real-Time Quiz Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+      <div class="hero-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+      </div>
+      
+      <nav class="navbar">
+        <div class="logo">
+          <span class="logo-icon">🎯</span>
+          <span class="logo-text">QuizMaster</span>
+        </div>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it Works</a>
+        </div>
+      </nav>
+      
+      <main class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="gradient-text">Real-Time</span> Quiz Battles
+          </h1>
+          <p class="hero-subtitle">
+            Create engaging quizzes, compete with friends, and climb the leaderboard in real-time. 
+            No signup required – just create, share, and play!
+          </p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-glow" onclick="showPage('create-quiz')">
+              <span class="btn-icon">✨</span>
+              Create Quiz
+            </button>
+            <button class="btn btn-secondary" onclick="showPage('join-quiz')">
+              <span class="btn-icon">🎮</span>
+              Join Quiz
+            </button>
+          </div>
+        </div>
+      </main>
+      
+      <section id="features" class="features-section">
+        <h2 class="section-title">Why Choose <span class="gradient-text">QuizMaster</span>?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Real-Time Gameplay</h3>
+            <p>Experience instant synchronization across all players with live updates and seamless transitions.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Live Leaderboards</h3>
+            <p>Watch rankings update in real-time as players answer questions faster and more accurately.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Beautiful Design</h3>
+            <p>Modern, dark-themed interface with smooth animations and stunning visual effects.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Fully Responsive</h3>
+            <p>Play on any device - mobile, tablet, or desktop. The experience is optimized for all screens.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>No Signup Required</h3>
+            <p>Jump right into the action with nickname-based joining. No accounts, no hassle.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⏱️</div>
+            <h3>Custom Timers</h3>
+            <p>Set individual timers for each question to control the pace of your quiz.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section id="how-it-works" class="how-section">
+        <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Create Your Quiz</h3>
+            <p>Add questions, set options, and configure timers</p>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Share the Code</h3>
+            <p>Get a unique code and share it with players</p>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Play Together</h3>
+            <p>Start the quiz and compete in real-time!</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <!-- Create Quiz Page -->
+    <div id="create-quiz" class="page">
+      <div class="page-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+      
+      <header class="page-header">
+        <button class="btn-back" onclick="showPage('landing-page')">
+          ← Back
+        </button>
+        <h1 class="page-title">Create Your Quiz</h1>
+        <div class="header-spacer"></div>
+      </header>
+      
+      <div class="create-container">
+        <div class="create-sidebar">
+          <div class="glass-card">
+            <h3>Quiz Settings</h3>
+            <div class="form-group">
+              <label for="quiz-title">Quiz Title</label>
+              <input type="text" id="quiz-title" placeholder="Enter quiz title..." class="input-field">
+            </div>
+            <div class="form-group">
+              <label for="host-name">Your Name (Host)</label>
+              <input type="text" id="host-name" placeholder="Enter your name..." class="input-field">
+            </div>
+            <div class="quiz-summary">
+              <div class="summary-item">
+                <span class="summary-label">Questions</span>
+                <span class="summary-value" id="question-count">0</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Total Time</span>
+                <span class="summary-value" id="total-time">0s</span>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-full" id="create-quiz-btn" onclick="createQuiz()">
+              <span class="btn-icon">🚀</span>
+              Create & Get Code
+            </button>
+          </div>
+        </div>
+        
+        <div class="create-main">
+          <div class="questions-list" id="questions-list">
+            <!-- Questions will be added here -->
+          </div>
+          
+          <button class="btn btn-add-question" onclick="addQuestion()">
+            <span class="btn-icon">+</span>
+            Add Question
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Join Quiz Page -->
+    <div id="join-quiz" class="page">
+      <div class="page-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+      
+      <header class="page-header">
+        <button class="btn-back" onclick="showPage('landing-page')">
+          ← Back
+        </button>
+        <h1 class="page-title">Join a Quiz</h1>
+        <div class="header-spacer"></div>
+      </header>
+      
+      <div class="join-container">
+        <div class="glass-card join-card">
+          <div class="join-icon">🎮</div>
+          <h2>Enter Quiz Code</h2>
+          <p>Ask the host for the quiz code to join</p>
+          
+          <div class="code-input-container">
+            <input type="text" id="join-code" class="code-input" maxlength="6" placeholder="XXXXXX" autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="player-name">Your Nickname</label>
+            <input type="text" id="player-name" placeholder="Enter your nickname..." class="input-field">
+          </div>
+          
+          <button class="btn btn-primary btn-full btn-glow" onclick="joinQuiz()">
+            <span class="btn-icon">🚀</span>
+            Join Quiz
+          </button>
+          
+          <p class="join-hint">💡 Tip: Quiz codes are 6 characters long</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Host Waiting Room -->
+    <div id="host-waiting" class="page">
+      <div class="page-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+      
+      <div class="waiting-container">
+        <div class="quiz-code-display">
+          <h2>Quiz Code</h2>
+          <div class="code-box" id="display-quiz-code">XXXXXX</div>
+          <button class="btn btn-copy" onclick="copyQuizCode()">
+            📋 Copy Code
+          </button>
+        </div>
+        
+        <div class="waiting-content">
+          <div class="glass-card players-card">
+            <h3>
+              <span class="pulse-dot"></span>
+              Players Joined (<span id="player-count">0</span>)
+            </h3>
+            <div class="players-list" id="host-players-list">
+              <div class="waiting-message">
+                <div class="loader"></div>
+                <p>Waiting for players to join...</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="host-controls">
+            <div class="glass-card">
+              <h3>Host Controls</h3>
+              <div class="control-buttons">
+                <button class="btn btn-primary btn-full" id="start-quiz-btn" onclick="startQuiz()" disabled>
+                  <span class="btn-icon">▶️</span>
+                  Start Quiz
+                </button>
+                <button class="btn btn-secondary btn-full" onclick="showPage('create-quiz')">
+                  <span class="btn-icon">✏️</span>
+                  Edit Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Player Waiting Room -->
+    <div id="player-waiting" class="page">
+      <div class="page-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+      
+      <div class="player-waiting-container">
+        <div class="glass-card waiting-card">
+          <div class="checkmark-animation">✓</div>
+          <h2>You're In!</h2>
+          <p class="quiz-title-display" id="player-quiz-title">Science Quiz</p>
+          <div class="player-name-badge" id="player-name-display">Player</div>
+          
+          <div class="waiting-animation">
+            <div class="bouncing-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p>Waiting for host to start the quiz...</p>
+          </div>
+          
+          <div class="players-preview">
+            <p><span id="waiting-player-count">1</span> players joined</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Live Quiz Page -->
+    <div id="live-quiz" class="page">
+      <div class="page-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+      
+      <div class="quiz-container">
+        <header class="quiz-header">
+          <div class="question-progress">
+            <span id="current-question-num">1</span>/<span id="total-questions">10</span>
+          </div>
+          <div class="timer-container">
+            <div class="timer-circle">
+              <svg class="timer-svg">
+                <circle class="timer-bg" cx="30" cy="30" r="26"></circle>
+                <circle class="timer-progress" cx="30" cy="30" r="26" id="timer-circle"></circle>
+              </svg>
+              <span class="timer-text" id="timer-text">30</span>
+            </div>
+          </div>
+          <div class="score-display">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="current-score">0</span>
+          </div>
+        </header>
+        
+        <main class="question-container">
+          <div class="question-card glass-card">
+            <h2 class="question-text" id="question-text">Loading question...</h2>
+          </div>
+          
+          <div class="options-grid" id="options-container">
+            <!-- Options will be rendered here -->
+          </div>
+          
+          <div class="answer-feedback hidden" id="answer-feedback">
+            <div class="feedback-icon" id="feedback-icon">✓</div>
+            <p class="feedback-text" id="feedback-text">Correct!</p>
+            <p class="feedback-points" id="feedback-points">+1000 points</p>
+          </div>
+        </main>
+        
+        <!-- Host Controls Overlay -->
+        <div class="host-quiz-controls" id="host-quiz-controls">
+          <button class="control-btn" onclick="pauseQuiz()" title="Pause">⏸️</button>
+          <button class="control-btn" onclick="revealAnswer()" title="Reveal Answer">👁️</button>
+          <button class="control-btn" onclick="nextQuestion()" title="Next Question">⏭️</button>
+          <button class="control-btn danger" onclick="endQuizEarly()" title="End Quiz">⏹️</button>
+        </div>
+        
+        <!-- Answer Stats (Host View) -->
+        <div class="answer-stats hidden" id="answer-stats">
+          <p><span id="answered-count">0</span> / <span id="total-players">0</span> answered</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Leaderboard Page -->
+    <div id="leaderboard" class="page">
+      <div class="page-background">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="confetti-container" id="confetti"></div>
+      </div>
+      
+      <div class="leaderboard-container">
+        <h1 class="leaderboard-title">🏆 Final Results</h1>
+        
+        <div class="podium-section">
+          <div class="podium">
+            <div class="podium-place second">
+              <div class="podium-avatar" id="second-avatar">🥈</div>
+              <div class="podium-name" id="second-name">-</div>
+              <div class="podium-score" id="second-score">0</div>
+              <div class="podium-stand">2</div>
+            </div>
+            <div class="podium-place first">
+              <div class="crown">👑</div>
+              <div class="podium-avatar" id="first-avatar">🥇</div>
+              <div class="podium-name" id="first-name">-</div>
+              <div class="podium-score" id="first-score">0</div>
+              <div class="podium-stand">1</div>
+            </div>
+            <div class="podium-place third">
+              <div class="podium-avatar" id="third-avatar">🥉</div>
+              <div class="podium-name" id="third-name">-</div>
+              <div class="podium-score" id="third-score">0</div>
+              <div class="podium-stand">3</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="glass-card leaderboard-card">
+          <h3>Full Rankings</h3>
+          <div class="rankings-list" id="rankings-list">
+            <!-- Rankings will be rendered here -->
+          </div>
+        </div>
+        
+        <div class="leaderboard-actions">
+          <button class="btn btn-primary" onclick="playAgain()">
+            <span class="btn-icon">🔄</span>
+            Play Again
+          </button>
+          <button class="btn btn-secondary" onclick="goHome()">
+            <span class="btn-icon">🏠</span>
+            Back to Home
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mini Leaderboard (During Quiz) -->
+    <div class="mini-leaderboard hidden" id="mini-leaderboard">
+      <div class="mini-leaderboard-header">
+        <span>🏆 Live Rankings</span>
+        <button class="btn-close" onclick="toggleMiniLeaderboard()">×</button>
+      </div>
+      <div class="mini-leaderboard-list" id="mini-leaderboard-list">
+        <!-- Rankings will be rendered here -->
+      </div>
+    </div>
+    
+    <button class="leaderboard-toggle hidden" id="leaderboard-toggle" onclick="toggleMiniLeaderboard()">
+      🏆
+    </button>
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+  </div>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/quiz.js"></script>
+</body>
+</html>
