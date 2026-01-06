@@ -17,11 +17,22 @@ const state = {
 
 // Initialize Socket.IO
 function initSocket() {
-  state.socket = io();
+  state.socket = io({
+    transports: ['websocket', 'polling'],
+    reconnection: true,
+    reconnectionAttempts: 5,
+    reconnectionDelay: 1000
+  });
   
   // Connection events
   state.socket.on('connect', () => {
     console.log('Connected to server');
+    showToast('Connected!', 'success');
+  });
+  
+  state.socket.on('connect_error', (error) => {
+    console.log('Connection error:', error);
+    showToast('Connecting to server...', 'error');
   });
   
   state.socket.on('disconnect', () => {
